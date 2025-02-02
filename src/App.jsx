@@ -4,6 +4,10 @@ import ReactConfetti from "react-confetti";
 
 const ColorGameBox = styled.div`
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  /* place-items: center; */
 `;
 
 const ScoreDiv = styled.div`
@@ -56,11 +60,12 @@ const ResetButton = styled.button`
   background-color: red;
   border-radius: 12px;
   padding: 0.5rem 1rem;
+  color: white;
   &:hover {
   }
 `;
 
-const Test = styled.div`
+const H2Div = styled.div`
   width: 100%;
   min-height: 50px;
   display: grid;
@@ -108,37 +113,37 @@ function App() {
     setShowConfetti(false);
   };
   const handleAnwerClick = (color) => {
-    setGameStatus("You Got It✅");
-    // if (color === targetColor) {
-    //   setScore((prev) => prev + 1);
-    //   setGameStatus("You Got It✅");
-    //   setShowConfetti(true);
-    //   setDisabled(true);
-    //   setTimeout(() => {
-    //     setGameStatus("");
-    //     setTargetColor(getTargetColor());
-    //     setDisabled(false);
-    //     setShowConfetti(false);
-    //   }, 5000);
-    // } else {
-    //   setGameStatus("Opps, Wrong Answer❌");
-    //   setDisabled(true);
-    //   setTimeout(() => {
-    //     setGameStatus("");
-    //     setTargetColor(getTargetColor());
-    //     setDisabled(false);
-    //   }, 3000);
-    // }
+    // setGameStatus("You Got It✅");
+    if (color === targetColor) {
+      setScore((prev) => prev + 1);
+      setGameStatus("You Got It✅");
+      setShowConfetti(true);
+      setDisabled(true);
+      setTimeout(() => {
+        setGameStatus("");
+        setTargetColor(getTargetColor());
+        setDisabled(false);
+        setShowConfetti(false);
+      }, 5000);
+    } else {
+      setGameStatus("Opps, Wrong Answer❌");
+      setDisabled(true);
+      setTimeout(() => {
+        setGameStatus("");
+        setTargetColor(getTargetColor());
+        setDisabled(false);
+      }, 3000);
+    }
   };
   return (
     <ColorGameBox data-test-id="colorGameBox">
       {showConfetti && <ReactConfetti />}
       {/* <div> */}
-      <Test>
+      <H2Div>
         <h2 data-test-id="gameInstruction">
           {gameStatus || "Guess The Correct Color!"}
         </h2>
-      </Test>
+      </H2Div>
       <ScoreDiv>
         <div data-test-id="score">Score: {score}</div>
         <ResetButton data-test-id="newGameButton" onClick={handleNewGame}>

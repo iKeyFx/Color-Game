@@ -16,7 +16,8 @@
 
 body {
   margin: 0;
-
+display: flex;
+justify-content: center;
   min-width: 320px;
   min-height: 100vh;
   background-color: #1a1a1a;
@@ -65,8 +66,8 @@ button:focus-visible {
 
 @media (min-width: 651px) {
 body {
-    display: flex;
+    /* display: flex;
   place-items: center;
-  justify-content: center;
+  justify-content: center; */
 }
 }
