@@ -4,9 +4,9 @@ import ReactConfetti from "react-confetti";
 
 const ColorGameBox = styled.div`
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
+  /* display: flex; */
+  /* flex-direction: column;
+  justify-items: center; */
   /* place-items: center; */
 `;
 
