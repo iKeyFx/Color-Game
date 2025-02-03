@@ -14,7 +14,7 @@ const ScoreDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 const TargetBox = styled.div`
@@ -68,9 +68,15 @@ const ResetButton = styled.button`
 const H2Div = styled.div`
   width: 100%;
   min-height: 50px;
-  display: grid;
+  display: flex;
   align-items: center;
   justify-content: center;
+
+  h2 {
+    min-width: 300px;
+    text-align: center;
+    white-space: nowrap;
+  }
 `;
 function App() {
   const [score, setScore] = useState(0);
@@ -113,7 +119,6 @@ function App() {
     setShowConfetti(false);
   };
   const handleAnwerClick = (color) => {
-    // setGameStatus("You Got It✅");
     if (color === targetColor) {
       setScore((prev) => prev + 1);
       setGameStatus("You Got It✅");
