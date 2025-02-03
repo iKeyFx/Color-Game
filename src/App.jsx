@@ -5,10 +5,6 @@ import ReactConfetti from "react-confetti";
 const ColorGameBox = styled.div`
   text-align: center;
   color: white;
-  /* display: flex; */
-  /* flex-direction: column;
-  justify-items: center; */
-  /* place-items: center; */
 `;
 
 const ScoreDiv = styled.div`
