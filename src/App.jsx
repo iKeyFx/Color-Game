@@ -23,10 +23,6 @@ const TargetBox = styled.div`
   @media (max-width: 650px) {
     height: 100px;
   }
-
-  @media (max-width: 350px) {
-    height: 100px;
-  }
 `;
 
 const Button = styled.button`
@@ -140,11 +136,11 @@ function App() {
   return (
     <ColorGameBox data-test-id="colorGameBox">
       {showConfetti && <ReactConfetti />}
-      {/* <div> */}
       <H2Div>
-        <h2 data-test-id="gameInstruction">
-          {gameStatus || "Guess The Correct Color!"}
-        </h2>
+        {!gameStatus && (
+          <h2 data-test-id="gameInstruction">Guess The Correct Color!</h2>
+        )}
+        {gameStatus && <h2 data-test-id="gameStatus">{gameStatus}</h2>}
       </H2Div>
       <ScoreDiv>
         <div data-test-id="score">Score: {score}</div>
@@ -152,7 +148,6 @@ function App() {
           Restart
         </ResetButton>
       </ScoreDiv>
-      {/* </div> */}
       <TargetBox data-test-id="colorBox" color={targetColor}></TargetBox>
       <ButtonDiv>
         {colorOptions.map((color, i) => (
