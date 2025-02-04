@@ -4,7 +4,7 @@ import ReactConfetti from "react-confetti";
 
 const ColorGameBox = styled.div`
   text-align: center;
-  color: white;
+  color: #272424;
 `;
 
 const ScoreDiv = styled.div`
@@ -30,11 +30,18 @@ const Button = styled.button`
   height: 40px;
   background-color: ${(props) => props.color};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+
+  &:focus {
+    transform: scale(0.9);
+    box-shadow: 0 0 10px ${(props) => props.color};
+  }
 
   @media (max-width: 650px) {
     width: 100%;
   }
 `;
+
 const ButtonDiv = styled.div`
   display: flex;
   gap: 10px;
@@ -60,15 +67,20 @@ const ResetButton = styled.button`
 
 const H2Div = styled.div`
   width: 100%;
-  min-height: 50px;
+  min-height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   h2 {
     min-width: 300px;
     text-align: center;
     white-space: nowrap;
+  }
+
+  span {
+    margin-bottom: 10px;
   }
 `;
 function App() {
@@ -81,20 +93,11 @@ function App() {
     return `rgb(${r}, ${g}, ${b})`;
   };
 
-  const getContrastingColor = (baseColor) => {
-    const [r, g, b] = baseColor.match(/\d+/g).map(Number);
-    const variation = () => Math.floor(Math.random() * 20) - 10;
-
-    return `rgb(${r + variation()}, ${g + variation()}, ${b + variation()})`;
-  };
-
   const [targetColor, setTargetColor] = useState(getTargetColor());
   const [colorOptions, setColorOptions] = useState([]);
 
   useEffect(() => {
-    const incorrectColors = Array.from({ length: 5 }, () =>
-      getContrastingColor(targetColor)
-    );
+    const incorrectColors = Array.from({ length: 5 }, () => getTargetColor());
     const allColors = [...incorrectColors, targetColor].sort(
       () => Math.random() - 0.5
     );
@@ -122,25 +125,22 @@ function App() {
         setTargetColor(getTargetColor());
         setDisabled(false);
         setShowConfetti(false);
-      }, 5000);
+      }, 3000);
     } else {
       setGameStatus("Opps, Wrong Answer❌");
       setDisabled(true);
       setTimeout(() => {
         setGameStatus("");
-        setTargetColor(getTargetColor());
         setDisabled(false);
-      }, 3000);
+      }, 2000);
     }
   };
   return (
     <ColorGameBox data-test-id="colorGameBox">
       {showConfetti && <ReactConfetti />}
       <H2Div>
-        {!gameStatus && (
-          <h2 data-test-id="gameInstruction">Guess The Correct Color!</h2>
-        )}
-        {gameStatus && <h2 data-test-id="gameStatus">{gameStatus}</h2>}
+        <h2 data-test-id="gameInstruction">Guess The Correct Color!</h2>
+        {gameStatus && <span data-test-id="gameStatus">{gameStatus}</span>}
       </H2Div>
       <ScoreDiv>
         <div data-test-id="score">Score: {score}</div>
