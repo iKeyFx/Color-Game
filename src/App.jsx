@@ -145,7 +145,7 @@ function App() {
       <ScoreDiv>
         <div data-test-id="score">Score: {score}</div>
         <ResetButton data-test-id="newGameButton" onClick={handleNewGame}>
-          Restart
+          New Game
         </ResetButton>
       </ScoreDiv>
       <TargetBox data-test-id="colorBox" color={targetColor}></TargetBox>
