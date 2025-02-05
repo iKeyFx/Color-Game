@@ -136,24 +136,24 @@ function App() {
     }
   };
   return (
-    <ColorGameBox data-test-id="colorGameBox">
+    <ColorGameBox data-testid="colorGameBox">
       {showConfetti && <ReactConfetti />}
       <H2Div>
-        <h2 data-test-id="gameInstruction">Guess The Correct Color!</h2>
-        {gameStatus && <span data-test-id="gameStatus">{gameStatus}</span>}
+        <h2 data-testid="gameInstruction">Guess The Correct Color!</h2>
+        {gameStatus && <span data-testid="gameStatus">{gameStatus}</span>}
       </H2Div>
       <ScoreDiv>
-        <div data-test-id="score">Score: {score}</div>
-        <ResetButton data-test-id="newGameButton" onClick={handleNewGame}>
+        <div data-testid="score">Score: {score}</div>
+        <ResetButton data-testid="newGameButton" onClick={handleNewGame}>
           New Game
         </ResetButton>
       </ScoreDiv>
-      <TargetBox data-test-id="colorBox" color={targetColor}></TargetBox>
+      <TargetBox data-testid="colorBox" color={targetColor}></TargetBox>
       <ButtonDiv>
         {colorOptions.map((color, i) => (
           <Button
             key={i}
-            data-test-id="colorOptions"
+            data-testid="colorOptions"
             color={color}
             onClick={() => handleAnwerClick(color)}
             disabled={disabled}
